@@ -1,10 +1,9 @@
 class Solution:
     def judgeSquareSum(self, c: int) -> bool:
-        square_root = math.floor((math.sqrt(c)))
-        root = [i for i in range(square_root+1)]
-        left,right = 0,len(root)-1
+        square_root = math.ceil((math.sqrt(c)))
+        left,right = 0,square_root
         while left<=right:
-            value = root[left]**2+root[right]**2
+            value = left**2+right**2
             if value<c:
                 left+=1
             elif value>c:
