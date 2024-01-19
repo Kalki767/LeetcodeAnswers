@@ -3,19 +3,20 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
-        #Step1: assign one pointer to the beginning of the array
+        #Step1: count the occurences of 0 and 1 in the list
+        count_of_zero = nums.count(0)
+        count_of_one = nums.count(1)
         left=0
 
-        #Step2: iterate through the array until the left pointer reaches the second last element
-        while left<len(nums)-1:
-
-            #Step3: assign another pointer right which is the left pointer incremented by one and check if the element at that pointer is bigger or not
-            right = left+1
-            while right<len(nums):
-                if nums[left]>nums[right]:
-                    nums[left],nums[right]=nums[right],nums[left]
-                if nums[left]==0:
-                    break
-                right+=1
+        #Step2:iterate through the array once while updating elements based on the status of the count variables
+        while left<len(nums):
+            if count_of_zero>0:
+                nums[left]=0
+                count_of_zero-=1
+            elif count_of_one>0:
+                nums[left]=1
+                count_of_one-=1
+            else:
+                nums[left]=2
             left+=1
     
